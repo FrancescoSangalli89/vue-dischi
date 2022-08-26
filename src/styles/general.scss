@@ -1,0 +1,7 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import './vars.scss';
+
+body {
+    font-family: sans-serif;
+    background-color: $primary-color;
+}
