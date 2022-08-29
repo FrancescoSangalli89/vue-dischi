@@ -5,6 +5,7 @@
         </a>
         <div>
             <select class="form-select" v-model="selectedGenre" @change="$emit('changedGenre', selectedGenre)" >
+                <option selected>Seleziona un genere</option>
                 <option v-for="(genre, index) in genresList" :key="index" :value=genre>{{genre}}</option>
             </select>
         </div>
@@ -20,7 +21,7 @@ export default {
     },
     data() {
         return {
-            selectedGenre: ""
+            selectedGenre: "Seleziona un genere"
         }
     }
 }

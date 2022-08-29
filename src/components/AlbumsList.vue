@@ -37,7 +37,7 @@ export default {
     computed: {
         getFilteredalbums() {
             
-            if (this.genreToSearch == '') {
+            if (this.genreToSearch == 'Seleziona un genere') {
                 return this.albumsList;
             } else {
                 const filteredValue = this.albumsList.filter((album => {
