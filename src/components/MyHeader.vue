@@ -1,12 +1,28 @@
 <template>
     <header>
-        <img class="p-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="spotify logo" />
+        <a href="#">
+            <img class="p-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="spotify logo" />
+        </a>
+        <div>
+            <select class="form-select" v-model="selectedGenre" @change="$emit('changedGenre', selectedGenre)" >
+                <option v-for="(genre, index) in genresList" :key="index" :value=genre>{{genre}}</option>
+            </select>
+        </div>
     </header>
 </template>
 
 <script>
+
 export default {
-    name: 'MyHeader'
+    name: 'MyHeader',
+    props: {
+        genresList: Array,
+    },
+    data() {
+        return {
+            selectedGenre: ""
+        }
+    }
 }
 </script>
 
@@ -16,9 +32,12 @@ export default {
     header {
         height: 50px;
         background-color: $secondary-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
         img {
-            height: 100%;
+            max-height: 50px;
         }
     }
 </style>

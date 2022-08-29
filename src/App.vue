@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MyHeader />
-    <AlbumsList />
+    <MyHeader :genresList="genres" @changedGenre="startSearch" />
+    <AlbumsList @genresReady="getGenresList" :genreToSearch="selectedGenre" />
   </div>
 </template>
 
@@ -15,6 +15,21 @@ export default {
   components: {
     MyHeader,
     AlbumsList
+  },
+  data() {
+    return {
+      genres: [],
+      selectedGenre: ""
+    }
+  },
+  methods: {
+    getGenresList(genresList) {
+      this.genres = genresList;
+    },
+    startSearch(selectedGenre) {
+      this.selectedGenre = selectedGenre;
+      console.log(selectedGenre);
+    }
   }
 }
 </script>
