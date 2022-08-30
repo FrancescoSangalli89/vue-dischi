@@ -1,11 +1,11 @@
 <template>
-    <header>
+    <header class="p-2">
         <a href="#">
-            <img class="p-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="spotify logo" />
+            <img class="py-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="spotify logo" />
         </a>
         <div>
             <select class="form-select" v-model="selectedGenre" @change="$emit('changedGenre', selectedGenre)" >
-                <option selected>Seleziona un genere</option>
+                <option value="">Seleziona un genere</option>
                 <option v-for="(genre, index) in genresList" :key="index" :value=genre>{{genre}}</option>
             </select>
         </div>
@@ -21,7 +21,7 @@ export default {
     },
     data() {
         return {
-            selectedGenre: "Seleziona un genere"
+            selectedGenre: ""
         }
     }
 }

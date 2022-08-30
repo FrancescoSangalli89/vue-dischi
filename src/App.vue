@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       genres: [],
-      selectedGenre: "Seleziona un genere"
+      selectedGenre: ""
     }
   },
   methods: {
@@ -28,7 +28,6 @@ export default {
     },
     startSearch(selectedGenre) {
       this.selectedGenre = selectedGenre;
-      console.log(selectedGenre);
     }
   }
 }

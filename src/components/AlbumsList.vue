@@ -37,11 +37,11 @@ export default {
     computed: {
         getFilteredalbums() {
             
-            if (this.genreToSearch == 'Seleziona un genere') {
+            if (this.genreToSearch == '') {
                 return this.albumsList;
             } else {
                 const filteredValue = this.albumsList.filter((album => {
-                    if (album.genre.includes(this.genreToSearch)) {
+                    if (album.genre == this.genreToSearch) {
                         return true;
                     } else {
                         return false;
@@ -49,7 +49,6 @@ export default {
                 }));  
 
                 return filteredValue;
-
             }
         }
     },
@@ -57,7 +56,13 @@ export default {
         axios.get(this.endpoint)
         .then(response => {
         this.albumsList = response.data.response;
-        this.genres = this.getGenres(this.albumsList);
+
+        this.albumsList.forEach(album => {
+            if (!this.genres.includes(album.genre)) {
+                this.genres.push(album.genre);
+            }
+        })
+
         this.$emit("genresReady",this.genres);
         this.loadInProgress = false;
         })
@@ -66,18 +71,6 @@ export default {
             this.loadInProgress = false;
         })
     },
-    methods: {
-        getGenres(genres) {
-            let scopeGenres = this.genres;
-            for (let i = 0; i < genres.length; i++) {
-                console.log(genres[i].genre);
-                scopeGenres.push(genres[i].genre);
-                let uniqueGenres = [...new Set(scopeGenres.sort())];
-                scopeGenres = uniqueGenres;
-            }
-            return(scopeGenres);
-        }
-    }
 }
 </script>
 
